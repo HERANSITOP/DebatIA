@@ -36,6 +36,27 @@ app.get("/token", async (req, res) => {
   }
 });
 
+app.get("/callback", async (req, res) => {
+  const code = req.query.code;
+
+  const response = await fetch(`${process.env.AUTH0_ISSUER_BASE_URL}/oauth/token`, {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({
+      grant_type: "authorization_code",
+      client_id: process.env.AUTH0_CLIENT_ID,
+      client_secret: process.env.AUTH0_CLIENT_SECRET,
+      code,
+      redirect_uri: process.env.AUTH0_REDIRECT_URI+"/callback"
+    }),
+  });
+
+  const data = await response.json();
+  console.log("Tokens recibidos:", data);
+
+  res.json(data);
+});
+
 
 
 app.get("/public", (req, res) => {
