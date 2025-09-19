@@ -48,18 +48,10 @@ export function ThemeToggleButton() {
                   text-gray-900 dark:text-white
                   hover:bg-white dark:hover:bg-gray-700`}
       >
-        {mode === 'dark' ? 'Modo Claro' : 'Modo Oscuro'}
+        {mode === 'dark' ? 'Modo UNAL' : 'Modo Oscuro'}
       </button>
 
       {/* Normal/UNAL mode toggle */}
-      <button
-        onClick={toggleUnalMode}
-        className={`${buttonBaseClasses} left-4
-                  ${isUnal ? 'bg-white/90 hover:bg-white/100' : 'bg-green-600/90 hover:bg-green-500'}
-                  ${isUnal ? 'text-gray-900' : 'text-white'}`}
-      >
-        {isUnal ? 'Modo Normal' : 'Modo UNAL'}
-      </button>
     </>
   );
 }

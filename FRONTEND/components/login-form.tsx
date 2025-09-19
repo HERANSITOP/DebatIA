@@ -31,7 +31,7 @@ export function LoginForm() {
       <CardHeader className="space-y-1 text-center">
         <CardTitle className="text-2xl font-bold text-balance text-gray-900 dark:text-white">Bienvenido</CardTitle>
         <CardDescription className="text-sm text-gray-600 dark:text-gray-400">
-          Inicia sesiónn con tu cuenta de Googlee para continuar
+          Inicia sesión con tu cuenta de Google para continuar
         </CardDescription>
       </CardHeader>
       <CardContent>
