@@ -5,7 +5,7 @@ export default function LoginPage() {
   return (
     <div className="min-h-screen flex flex-col relative
                  bg-[#f0f2f5] dark:bg-gray-900
-                 unal:bg-[url('/unal-medellin.jpg')] unal:bg-cover unal:bg-fixed unal:bg-center
+                 unal:bg-[url()] unal:bg-cover unal:bg-fixed unal:bg-center
                  before:content-[''] before:absolute before:inset-0 unal:before:bg-black/30">
       <ThemeToggleButton />
       <div className="flex-1 flex items-center justify-center px-4 py-12">
@@ -29,7 +29,7 @@ export default function LoginPage() {
                 </div>
               </div>
                 <h1 className="text-2xl font-bold text-white text-center">DebatIA</h1>
-                <p className="text-green-50">Accede a tu cuenta con el correo de la universidad</p>
+                <p className="text-green-50 text-center">Accede a tu cuenta con el correo de la universidad</p>
               </div>
             </div>
             <LoginForm />

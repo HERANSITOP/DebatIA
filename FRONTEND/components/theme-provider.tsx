@@ -48,7 +48,7 @@ export function ThemeToggleButton() {
                   text-gray-900 dark:text-white
                   hover:bg-white dark:hover:bg-gray-700`}
       >
-        {mode === 'dark' ? 'Modo Oscuro' : 'Modo UNAL'}
+        {mode === 'dark' ? 'Modo UNAL' : 'Modo Oscuro'}
       </button>
 
       {/* Normal/UNAL mode toggle */}
