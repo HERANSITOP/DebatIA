@@ -1,69 +1,65 @@
-"use client"
+"use client";
 
-import { useEffect, useState } from "react"
-import { useRouter } from "next/navigation"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { LogOut, User } from "lucide-react"
+import { useEffect, useState } from "react";
+import { redirect, useRouter } from "next/navigation";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { LogOut, User } from "lucide-react";
 
 interface UserProfile {
-  name: string
-  email: string
-  picture: string
-  sub: string
+  name: string;
+  email: string;
+  picture: string;
+  sub: string;
 }
 
 export default function HomePage() {
-  const router = useRouter()
-  const [user, setUser] = useState<UserProfile | null>(null)
-  const [isLoading, setIsLoading] = useState(true)
+  const router = useRouter();
+  const [user, setUser] = useState<UserProfile | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     // Check if user is authenticated
-    const accessToken = localStorage.getItem('access_token')
-    const userProfile = localStorage.getItem('user_profile')
+    const accessToken = localStorage.getItem("access_token");
+    const userProfile = localStorage.getItem("user_profile");
 
     if (!accessToken || !userProfile) {
-      router.push('/login')
-      return
+      router.push("/login");
+      return;
     }
 
     try {
-      const parsedUser = JSON.parse(userProfile)
-      setUser(parsedUser)
+      const parsedUser = JSON.parse(userProfile);
+      setUser(parsedUser);
     } catch (error) {
-      console.error('Error parsing user profile:', error)
-      router.push('/login')
+      console.error("Error parsing user profile:", error);
+      router.push("/login");
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
-  }, [router])
-
-  const handleLogout = () => {
-    // Clear stored tokens and user data
-    localStorage.removeItem('access_token')
-    localStorage.removeItem('id_token')
-    localStorage.removeItem('user_profile')
-    
-    // Redirect to Auth0 logout
-    const auth0Domain = process.env.NEXT_PUBLIC_AUTH0_ISSUER_BASE_URL || "https://dev-2eco3268ivgvoe7i.us.auth0.com"
-    const returnTo = encodeURIComponent('http://localhost:3000/login')
-    
-    window.location.href = `${auth0Domain}/v2/logout?returnTo=${returnTo}`
-  }
+  }, [router]);
 
   if (isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-green-50 to-blue-50 dark:from-gray-900 dark:to-gray-800">
         <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-green-600"></div>
       </div>
-    )
+    );
   }
 
   if (!user) {
-    return null // Will redirect to login
+    return null; // Will redirect to login
   }
+  const handleLogout = () => {
+    redirect("https://debatiabackend-production.up.railway.app/auth/google");
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 to-blue-50 dark:from-gray-900 dark:to-gray-800 p-4">
@@ -73,7 +69,7 @@ export default function HomePage() {
           <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
             DebatIA Dashboard
           </h1>
-          <Button 
+          <Button
             onClick={handleLogout}
             variant="outline"
             className="flex items-center gap-2"
@@ -105,7 +101,8 @@ export default function HomePage() {
           </CardHeader>
           <CardContent>
             <p className="text-gray-700 dark:text-gray-300">
-              Has iniciado sesión correctamente con Auth0. Tu sesión está activa y puedes comenzar a usar la aplicación.
+              Has iniciado sesión correctamente con Auth0. Tu sesión está activa
+              y puedes comenzar a usar la aplicación.
             </p>
           </CardContent>
         </Card>
@@ -149,9 +146,7 @@ export default function HomePage() {
               <CardTitle className="text-lg text-gray-900 dark:text-white">
                 Configuración
               </CardTitle>
-              <CardDescription>
-                Ajusta tus preferencias
-              </CardDescription>
+              <CardDescription>Ajusta tus preferencias</CardDescription>
             </CardHeader>
             <CardContent>
               <Button variant="outline" className="w-full">
@@ -162,5 +157,5 @@ export default function HomePage() {
         </div>
       </div>
     </div>
-  )
+  );
 }
