@@ -3,7 +3,7 @@ const { auth } = require("express-oauth2-jwt-bearer");
 require("dotenv").config();
 const app = express();
 
-// Middleware para validar el JWT
+
 const checkJwt = auth({
   audience: process.env.AUTH0_AUDIENCE_TOKEN,
   issuerBaseURL: process.env.AUTH0_ISSUER_BASE_URL,
