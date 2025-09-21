@@ -36,14 +36,14 @@ export function ThemeToggleButton() {
     document.documentElement.classList.toggle('unal', newUnal)
   }
 
-  const buttonBaseClasses = "px-4 py-2 rounded-lg shadow-lg backdrop-blur-sm transition-all duration-200 fixed top-4";
+  const buttonBaseClasses = "px-4 py-2 rounded-lg shadow-lg backdrop-blur-sm transition-all duration-200";
 
   return (
     <>
       {/* Light/Dark toggle */}
       <button
         onClick={toggleDarkMode}
-        className={`${buttonBaseClasses} right-4 
+        className={`${buttonBaseClasses} 
                   bg-white/90 dark:bg-gray-800
                   text-gray-900 dark:text-white
                   hover:bg-white dark:hover:bg-gray-700`}

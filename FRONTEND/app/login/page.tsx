@@ -1,5 +1,10 @@
+"use client"
+
 import { LoginForm } from "@/components/login-form"
 import { ThemeToggleButton } from "@/components/theme-provider"
+import { HelpModal } from "@/components/help-modal"
+import { Button } from "@/components/ui/button"
+import { MessageSquare } from "lucide-react"
 
 export default function LoginPage() {
   return (
@@ -7,7 +12,17 @@ export default function LoginPage() {
                  bg-[#f0f2f5] dark:bg-gray-900
                  unal:bg-[url()] unal:bg-cover unal:bg-fixed unal:bg-center
                  before:content-[''] before:absolute before:inset-0 unal:before:bg-black/30">
-      <ThemeToggleButton />
+      
+      {/* Header with theme toggle and help button */}
+      <div className="fixed top-4 right-4 z-50 flex items-center gap-3">
+        <HelpModal>
+          <Button variant="outline" size="sm" className="gap-2">
+            <MessageSquare className="h-4 w-4" />
+            Ayuda
+          </Button>
+        </HelpModal>
+        <ThemeToggleButton />
+      </div>
       <div className="flex-1 flex items-center justify-center px-4 py-12">
         <div className="bg-gradient-to-br from-green-400 to-green-10000000 
                     dark:from-green-600 dark:to-green-10000000 
