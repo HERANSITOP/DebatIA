@@ -6,7 +6,7 @@ interface Message {
   id: string
   role: "user" | "ai-1" | "ai-2" | "ai-3"
   content: string
-  timestamp: Date
+  timestamp: Date | string
   aiName?: string
 }
 
@@ -88,7 +88,7 @@ export function DebateMessage({ message }: DebateMessageProps) {
             {config.description}
           </Badge>
           <span className="text-xs text-muted-foreground ml-auto">
-            {message.timestamp.toLocaleTimeString("es-ES", {
+            {new Date(message.timestamp).toLocaleTimeString("es-ES", {
               hour: "2-digit",
               minute: "2-digit",
             })}

@@ -9,9 +9,9 @@
     "start": "next start"
   },
   "dependencies": {
-    "@ai-sdk/openai": "latest",
     "@auth/core": "^0.40.0",
     "@hookform/resolvers": "^3.10.0",
+    "@huggingface/inference": "^4.8.0",
     "@radix-ui/react-accordion": "1.2.2",
     "@radix-ui/react-alert-dialog": "1.1.4",
     "@radix-ui/react-aspect-ratio": "1.1.1",
@@ -42,6 +42,7 @@
     "@vercel/analytics": "latest",
     "ai": "latest",
     "autoprefixer": "^10.4.20",
+    "axios": "^1.12.2",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "1.0.4",
@@ -54,6 +55,7 @@
     "next-auth": "^4.24.7",
     "next-themes": "^0.4.6",
     "nodemailer": "latest",
+    "openai": "^5.22.0",
     "react": "^18",
     "react-day-picker": "9.8.0",
     "react-dom": "^18",

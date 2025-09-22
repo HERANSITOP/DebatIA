@@ -157,14 +157,29 @@ export default function DebatePage() {
         if (response.ok) {
           const data = await response.json()
           const aiMessage: Message = {
-            id: `${Date.now()}-${i}`,
+            id: `${Date.now()}-${Math.random()}-${i}`, // Agregar Math.random() para evitar IDs duplicados
             role: ai.role,
             content: data.response,
             timestamp: new Date(),
             aiName: ai.name,
           }
 
-          setMessages((prev) => [...prev, aiMessage])
+          // Verificar que no exista un mensaje duplicado antes de agregar
+          setMessages((prev) => {
+            const isDuplicate = prev.some(msg => 
+              msg.role === aiMessage.role && 
+              msg.content === aiMessage.content && 
+              Math.abs(new Date(msg.timestamp).getTime() - new Date(aiMessage.timestamp).getTime()) < 1000
+            )
+            
+            if (isDuplicate) {
+              console.log(`⚠️ Mensaje duplicado detectado para ${ai.name}, omitiendo...`)
+              return prev
+            }
+            
+            return [...prev, aiMessage]
+          })
+          
           currentMessages.push(aiMessage)
 
           // Add a small delay between AI responses for better UX
@@ -179,7 +194,7 @@ export default function DebatePage() {
   }
 
   const continueDebate = async () => {
-    if (messages.length === 0) return
+    if (messages.length === 0 || isDebating) return
 
     setIsDebating(true)
     await generateDebateRound(currentTopic, messages)
@@ -278,6 +293,11 @@ export default function DebatePage() {
                   placeholder="Ej: ¿Es la inteligencia artificial beneficiosa para la humanidad?"
                   value={topic}
                   onChange={(e) => setTopic(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' && canStartDebate() && !isDebating) {
+                      startDebate()
+                    }
+                  }}
                   className="text-base flex-1"
                   disabled={isDebating}
                 />
