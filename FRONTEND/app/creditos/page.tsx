@@ -4,6 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Code, Palette, Database, Brain, Shield, Globe } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { HelpModal } from "@/components/help-modal";
 
 export default function CreditosPage() {
   const router = useRouter();
@@ -64,7 +65,30 @@ export default function CreditosPage() {
   const equipo = [
     {
       rol: "Desarrollador Full-Stack",
-      nombre: "Equipo DebatIA",
+      nombre: "Hernán Darío Tapias Martínez",
+      email: "htapias@unal.edu.co",
+      telefono: "315 351 2929",
+      descripcion: "Desarrollo de la plataforma completa de debates inteligentes"
+    },
+    {
+      rol: "Desarrollador Full-Stack",
+      nombre: "Miguel Ángel Ramírez Pedrozo",
+      email: "miramirezpe@unal.edu.co",
+      telefono: "324 626 6576",
+      descripcion: "Desarrollo de la plataforma completa de debates inteligentes"
+    },
+    {
+      rol: "Desarrollador Full-Stack",
+      nombre: "Samuel Muñoz del Río",
+      email: "samumunoz@unal.edu.co",
+      telefono: "313 754 6390",
+      descripcion: "Desarrollo de la plataforma completa de debates inteligentes"
+    },
+    {
+      rol: "Desarrollador Full-Stack",
+      nombre: "Sebastián Sepúlveda García",
+      email: "sesepulvedag@unal.edu.co",
+      telefono: "321 831 7348",
       descripcion: "Desarrollo de la plataforma completa de debates inteligentes"
     }
   ];
@@ -156,12 +180,32 @@ export default function CreditosPage() {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
               {equipo.map((miembro, index) => (
-                <div key={index} className="p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
-                  <h3 className="font-semibold text-gray-900 dark:text-white">{miembro.rol}</h3>
-                  <p className="text-green-600 dark:text-green-400 font-medium">{miembro.nombre}</p>
-                  <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">{miembro.descripcion}</p>
+                <div key={index} className="p-6 bg-gray-50 dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
+                  <h3 className="font-semibold text-gray-900 dark:text-white text-lg">{miembro.rol}</h3>
+                  <p className="text-green-600 dark:text-green-400 font-medium text-xl mt-2">{miembro.nombre}</p>
+                  <div className="mt-4 space-y-2">
+                    <div className="flex items-center gap-2">
+                      <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Email:</span>
+                      <a 
+                        href={`mailto:${miembro.email}`}
+                        className="text-sm text-blue-600 dark:text-blue-400 hover:underline"
+                      >
+                        {miembro.email}
+                      </a>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Teléfono:</span>
+                      <a 
+                        href={`tel:${miembro.telefono.replace(/\s/g, '')}`}
+                        className="text-sm text-blue-600 dark:text-blue-400 hover:underline"
+                      >
+                        {miembro.telefono}
+                      </a>
+                    </div>
+                  </div>
+                  <p className="text-sm text-gray-600 dark:text-gray-400 mt-4">{miembro.descripcion}</p>
                 </div>
               ))}
             </div>
@@ -212,13 +256,12 @@ export default function CreditosPage() {
               <p className="text-gray-600 dark:text-gray-400 mb-4">
                 Estamos siempre abiertos a mejorar y expandir DebatIA
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button className="bg-green-600 hover:bg-green-700 text-white">
-                  Contactar Equipo
-                </Button>
-                <Button variant="outline">
-                  Reportar Bug
-                </Button>
+              <div className="flex justify-center">
+                <HelpModal>
+                  <Button className="bg-green-600 hover:bg-green-700 text-white">
+                    Contactar Equipo / Reportar Bug
+                  </Button>
+                </HelpModal>
               </div>
             </div>
           </CardContent>
@@ -226,34 +269,13 @@ export default function CreditosPage() {
 
         {/* Footer adicional */}
         <div className="mt-8 text-center text-sm text-gray-500 dark:text-gray-500">
-          <p>Última actualización: Enero 2025</p>
+          <p>Última actualización: Septiembre 2025</p>
           <p className="mt-2">
             Desarrollado con Next.js, React, TypeScript y mucho ☕
           </p>
         </div>
       </div>
       
-      {/* Footer con Copyright */}
-      <footer className="bg-gray-50 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 mt-12">
-        <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <p className="text-sm text-gray-600 dark:text-gray-400">
-              © 2025 DebatIA. Todos los derechos reservados.
-            </p>
-            <p className="text-xs text-gray-500 dark:text-gray-500 mt-2">
-              Plataforma de debates inteligentes desarrollada con Next.js, React y tecnologías de IA
-            </p>
-            <div className="mt-3">
-              <a 
-                href="/creditos" 
-                className="text-sm text-green-600 hover:text-green-700 dark:text-green-400 dark:hover:text-green-300 transition-colors"
-              >
-                Ver Créditos del Proyecto
-              </a>
-            </div>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }
