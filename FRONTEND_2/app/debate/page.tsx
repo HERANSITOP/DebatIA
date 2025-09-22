@@ -240,7 +240,7 @@ export default function DebatePage() {
         </div>
       </header>
 
-      <div className="container mx-auto px-4 py-4 max-w-6xl h-[calc(100vh-6rem)] overflow-hidden">
+      <div className="container mx-auto px-4 py-4 max-w-6xl h-[calc(100vh-10rem)] overflow-hidden">
         {showConfig ? (
           <div className="h-full flex flex-col space-y-4">
             {/* Topic Input */}
@@ -262,17 +262,17 @@ export default function DebatePage() {
             </Card>
 
             {/* AI Configuration */}
-            <Card className="p-6 flex-1 overflow-hidden rounded-[36px] config-card">
-              <div className="flex items-center gap-2 mb-6">
+            <Card className="p-4 flex-1 overflow-hidden rounded-[36px] config-card">
+              <div className="flex items-center gap-2 mb-4">
                 <Settings className="h-4 w-4" />
                 <h2 className="text-lg font-semibold">Configurar Participantes</h2>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 h-full pb-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 h-full pb-12">
                 {aiConfigs.map((ai) => {
                   const Icon = ai.icon
                   return (
-                    <Card key={ai.id} className={`p-4 pb-2 flex flex-col bg-white/60 dark:bg-slate-800/60 unal:bg-green-50/70 backdrop-blur-lg border border-white/20 dark:border-slate-700/30 unal:border-green-200/30 rounded-3xl shadow-lg ${ai.enabled ? "ring-2 ring-primary/20" : "opacity-60"}`}>
+                    <Card key={ai.id} className={`p-3 pb-2 flex flex-col bg-white/60 dark:bg-slate-800/60 unal:bg-green-50/70 backdrop-blur-lg border border-white/20 dark:border-slate-700/30 unal:border-green-200/30 rounded-3xl shadow-lg ${ai.enabled ? "ring-2 ring-primary/20" : "opacity-60"}`}>
                       <div className="space-y-2 flex-1 flex flex-col">
                         {/* AI Header */}
                         <div className="flex items-start gap-3 flex-shrink-0">
@@ -309,6 +309,39 @@ export default function DebatePage() {
                               <p className={`text-xs leading-relaxed line-clamp-4 ${ai.customPrompt ? "opacity-60 line-through" : ""}`}>
                                 {ai.defaultPrompt}
                               </p>
+                              
+                              {/* AI Logos - Solo cuando están habilitadas */}
+                              {ai.enabled && (
+                                <div className="mt-3 flex justify-center">
+                                  {ai.id === "ai-1" && (
+                                    <div className="relative">
+                                      <img 
+                                        src="/Dr. Analítica.png" 
+                                        alt="Dr. Analítica Logo" 
+                                        className="w-48 h-auto [filter:drop-shadow(0_0_20px_rgba(0,0,0,0.8))_drop-shadow(0_0_40px_rgba(0,0,0,0.6))] dark:[filter:drop-shadow(0_0_20px_rgba(255,255,255,0.8))_drop-shadow(0_0_40px_rgba(255,255,255,0.6))]"
+                                      />
+                                    </div>
+                                  )}
+                                  {ai.id === "ai-2" && (
+                                    <div className="relative">
+                                      <img 
+                                        src="/Prof. Humanista.png" 
+                                        alt="Prof. Humanista Logo" 
+                                        className="w-48 h-auto [filter:drop-shadow(0_0_20px_rgba(0,0,0,0.8))_drop-shadow(0_0_40px_rgba(0,0,0,0.6))] dark:[filter:drop-shadow(0_0_20px_rgba(255,255,255,0.8))_drop-shadow(0_0_40px_rgba(255,255,255,0.6))]"
+                                      />
+                                    </div>
+                                  )}
+                                  {ai.id === "ai-3" && (
+                                    <div className="relative">
+                                      <img 
+                                        src="/Mx. Pragmático.png" 
+                                        alt="Mx. Pragmático Logo" 
+                                        className="w-48 h-auto [filter:drop-shadow(0_0_20px_rgba(0,0,0,0.8))_drop-shadow(0_0_40px_rgba(0,0,0,0.6))] dark:[filter:drop-shadow(0_0_20px_rgba(255,255,255,0.8))_drop-shadow(0_0_40px_rgba(255,255,255,0.6))]"
+                                      />
+                                    </div>
+                                  )}
+                                </div>
+                              )}
                             </div>
                           </div>
                         )}
@@ -370,6 +403,26 @@ export default function DebatePage() {
           </Card>
         )}
       </div>
+
+      {/* Footer with credits link - fixed position */}
+      <div className="fixed bottom-0 left-0 right-0 z-50 bg-gray-50/90 dark:bg-gray-900/90 backdrop-blur-sm border-t border-gray-200 dark:border-gray-800">
+        <div className="max-w-7xl mx-auto py-3 px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <p className="text-xs text-gray-600 dark:text-gray-400">
+              © 2025 DebatIA. Todos los derechos reservados.
+            </p>
+            <div className="mt-1">
+              <a 
+                href="/creditos" 
+                className="text-xs text-green-600 hover:text-green-700 dark:text-green-400 dark:hover:text-green-300 transition-colors"
+              >
+                Ver Créditos del Proyecto
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   )
 }
