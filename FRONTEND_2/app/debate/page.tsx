@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card } from "@/components/ui/card"
@@ -39,6 +39,29 @@ export default function DebatePage() {
   const [isDebating, setIsDebating] = useState(false)
   const [currentTopic, setCurrentTopic] = useState("")
   const [showConfig, setShowConfig] = useState(true)
+
+  // Persist debate state to localStorage
+  useEffect(() => {
+    const savedState = localStorage.getItem('debateState')
+    if (savedState) {
+      const { messages: savedMessages, currentTopic: savedTopic, showConfig: savedShowConfig } = JSON.parse(savedState)
+      if (savedMessages && savedMessages.length > 0) {
+        setMessages(savedMessages)
+        setCurrentTopic(savedTopic)
+        setShowConfig(savedShowConfig)
+      }
+    }
+  }, [])
+
+  // Save state to localStorage whenever it changes
+  useEffect(() => {
+    const stateToSave = {
+      messages,
+      currentTopic,
+      showConfig
+    }
+    localStorage.setItem('debateState', JSON.stringify(stateToSave))
+  }, [messages, currentTopic, showConfig])
 
   const [aiConfigs, setAiConfigs] = useState<AIConfig[]>([
     {
@@ -168,10 +191,12 @@ export default function DebatePage() {
     setIsDebating(false)
     setTopic("")
     setShowConfig(true)
+    // Clear saved state
+    localStorage.removeItem('debateState')
   }
 
   return (
-    <div className="h-screen bg-background overflow-hidden">
+    <div className="min-h-screen bg-background flex flex-col">
       {/* Header */}
       <header className="border-b bg-card/50 backdrop-blur-sm z-10 rounded-b-3xl">
         <div className="container mx-auto px-4 py-4">
@@ -240,9 +265,11 @@ export default function DebatePage() {
         </div>
       </header>
 
-      <div className="container mx-auto px-4 py-4 max-w-6xl h-[calc(100vh-10rem)] overflow-hidden">
+      {/* Main Content */}
+      <main className="flex-1">
+        <div className="container mx-auto px-4 py-4 max-w-6xl">
         {showConfig ? (
-          <div className="h-full flex flex-col space-y-4">
+          <div className="flex flex-col space-y-4">
             {/* Topic Input */}
             <Card className="p-4 flex-shrink-0 rounded-[36px] config-card">
               <h2 className="text-lg font-semibold mb-3 text-balance">¿Sobre qué tema quieres que debatan las IAs?</h2>
@@ -262,13 +289,13 @@ export default function DebatePage() {
             </Card>
 
             {/* AI Configuration */}
-            <Card className="p-4 flex-1 overflow-hidden rounded-[36px] config-card">
+            <Card className="p-4 rounded-[36px] config-card">
               <div className="flex items-center gap-2 mb-4">
                 <Settings className="h-4 w-4" />
                 <h2 className="text-lg font-semibold">Configurar Participantes</h2>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 h-full pb-12">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pb-12">
                 {aiConfigs.map((ai) => {
                   const Icon = ai.icon
                   return (
@@ -353,7 +380,7 @@ export default function DebatePage() {
             </Card>
           </div>
         ) : (
-          <Card className="h-full debate-card">
+          <Card className="debate-card">
             {/* Current Topic Display */}
             <div className="p-5 border-b bg-muted/100 debate-header">
               <div className="flex items-center justify-between">
@@ -381,17 +408,17 @@ export default function DebatePage() {
             </div>
 
             {/* Messages Area */}
-            <div className="flex-1 p-4 overflow-hidden">
-              <div className="space-y-4 h-full flex flex-col">
+            <div className="p-4">
+              <div className="space-y-4">
                 {messages.map((message, index) => (
-                  <div key={message.id} className="flex-shrink-0">
+                  <div key={message.id}>
                     <DebateMessage message={message} />
                     {index < messages.length - 1 && <Separator className="my-4 opacity-30" />}
                   </div>
                 ))}
 
                 {isDebating && (
-                  <div className="flex items-center justify-center py-8 flex-shrink-0">
+                  <div className="flex items-center justify-center py-8">
                     <div className="flex items-center gap-3 text-muted-foreground">
                       <div className="animate-spin rounded-full h-4 w-4 border-2 border-primary border-t-transparent"></div>
                       <span className="text-sm">Las IAs están debatiendo...</span>
@@ -402,26 +429,25 @@ export default function DebatePage() {
             </div>
           </Card>
         )}
-      </div>
+        </div>
+      </main>
 
-      {/* Footer with credits link - fixed position */}
-      <div className="fixed bottom-0 left-0 right-0 z-50 bg-gray-50/90 dark:bg-gray-900/90 backdrop-blur-sm border-t border-gray-200 dark:border-gray-800">
-        <div className="max-w-7xl mx-auto py-3 px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
+      {/* Footer with credits link */}
+      <footer className="bg-gray-50/90 dark:bg-gray-900/90 backdrop-blur-sm border-t border-gray-200 dark:border-gray-800">
+        <div className="container mx-auto px-4 py-4 max-w-6xl">
+          <div className="text-center space-y-1">
             <p className="text-xs text-gray-600 dark:text-gray-400">
               © 2025 DebatIA. Todos los derechos reservados.
             </p>
-            <div className="mt-1">
-              <a 
-                href="/creditos" 
-                className="text-xs text-green-600 hover:text-green-700 dark:text-green-400 dark:hover:text-green-300 transition-colors"
-              >
-                Ver Créditos del Proyecto
-              </a>
-            </div>
+            <a 
+              href="/creditos" 
+              className="text-xs text-green-600 hover:text-green-700 dark:text-green-400 dark:hover:text-green-300 transition-colors underline"
+            >
+              Ver Créditos del Proyecto
+            </a>
           </div>
         </div>
-      </div>
+      </footer>
 
     </div>
   )

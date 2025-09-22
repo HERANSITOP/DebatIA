@@ -201,32 +201,29 @@
   
   html {
     background: linear-gradient(135deg, #d4f4d4 0%, #c8f0c8 25%, #bcecbc 50%, #b0e8b0 75%, #a4e4a4 100%);
-    background-attachment: fixed;
     min-height: 100vh;
   }
   
   /* Dark mode background */
   .dark html {
     background: linear-gradient(135deg, #0f4c3a 0%, #1a5f4a 25%, #2d7a5a 50%, #3d8b6a 75%, #4a9c7a 100%);
-    background-attachment: fixed;
   }
   
   body {
     @apply text-foreground;
     background: transparent !important;
     min-height: 100vh;
+    overflow-x: hidden;
   }
   
   /* Ensure the main container also has the background */
   .min-h-screen {
     background: linear-gradient(135deg, #d4f4d4 0%, #c8f0c8 25%, #bcecbc 50%, #b0e8b0 75%, #a4e4a4 100%);
-    background-attachment: fixed;
   }
   
   /* Dark mode main container background */
   .dark .min-h-screen {
     background: linear-gradient(135deg, #0f4c3a 0%, #1a5f4a 25%, #2d7a5a 50%, #3d8b6a 75%, #4a9c7a 100%);
-    background-attachment: fixed;
   }
   
   /* Add a subtle overlay for better text readability */
