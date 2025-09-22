@@ -167,4 +167,17 @@ html.unal .bg-background {
   footer {
     margin-top: auto;
   }
+  
+  /* Solo para la página de login - eliminar scroll */
+  .no-scroll {
+    overflow: hidden !important;
+  }
+  
+  .no-scroll #__next {
+    height: 100vh !important;
+  }
+  
+  .no-scroll main {
+    overflow: hidden !important;
+  }
 }

@@ -226,38 +226,8 @@ export function HelpModal({ children }: HelpModalProps) {
                 </div>
               </div>
 
-              {/* Team Members */}
               <div className="pt-4 border-t">
-                <h4 className="font-semibold text-lg mb-4 text-primary">Equipo de Desarrollo - UNeural UNAL Medellín</h4>
-                <div className="space-y-4">
-                  <div className="bg-muted/50 p-4 rounded-lg">
-                    <h5 className="font-semibold text-base">Hernán Darío Tapias Martínez</h5>
-                    <p className="text-sm text-muted-foreground">htapias@unal.edu.co</p>
-                    <p className="text-sm text-muted-foreground">315 351 2929</p>
-                  </div>
-                  
-                  <div className="bg-muted/50 p-4 rounded-lg">
-                    <h5 className="font-semibold text-base">Miguel Ángel Ramírez Pedrozo</h5>
-                    <p className="text-sm text-muted-foreground">miramirezpe@unal.edu.co</p>
-                    <p className="text-sm text-muted-foreground">324 626 6576</p>
-                  </div>
-                  
-                  <div className="bg-muted/50 p-4 rounded-lg">
-                    <h5 className="font-semibold text-base">Samuel Muñoz del Río</h5>
-                    <p className="text-sm text-muted-foreground">samumunoz@unal.edu.co</p>
-                    <p className="text-sm text-muted-foreground">313 754 6390</p>
-                  </div>
-                  
-                  <div className="bg-muted/50 p-4 rounded-lg">
-                    <h5 className="font-semibold text-base">Sebastián Sepúlveda García</h5>
-                    <p className="text-sm text-muted-foreground">sesepulvedag@unal.edu.co</p>
-                    <p className="text-sm text-muted-foreground">321 831 7348</p>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="pt-4 border-t">
-                <p className="text-sm text-muted-foreground text-center">
+                <p className="text-sm text-black dark:text-white text-center">
                   "La U que soñamos cuida y celebra lo que somos" - Universidad Nacional de Colombia
                 </p>
               </div>

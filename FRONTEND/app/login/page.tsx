@@ -23,6 +23,8 @@ export default function LoginPage() {
         </HelpModal>
         <ThemeToggleButton />
       </div>
+      
+      {/* Main content area */}
       <div className="flex-1 flex items-center justify-center px-4 py-12">
         <div className="bg-gradient-to-br from-green-400 to-green-10000000 
                     dark:from-green-600 dark:to-green-10000000 
@@ -55,6 +57,27 @@ export default function LoginPage() {
         </div>
       </div>
 
+      {/* Footer with credits link - positioned at bottom */}
+      <div className="relative z-10 bg-gray-50/90 dark:bg-gray-900/90 backdrop-blur-sm border-t border-gray-200 dark:border-gray-800">
+        <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <p className="text-sm text-gray-600 dark:text-gray-400">
+              © 2025 DebatIA. Todos los derechos reservados.
+            </p>
+            <p className="text-xs text-gray-500 dark:text-gray-500 mt-2">
+              Plataforma de debates inteligentes desarrollada con Next.js, React y tecnologías de IA
+            </p>
+            <div className="mt-3">
+              <a 
+                href="/creditos" 
+                className="text-sm text-green-600 hover:text-green-700 dark:text-green-400 dark:hover:text-green-300 transition-colors"
+              >
+                Ver Créditos del Proyecto
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
 
     </div>
   )
