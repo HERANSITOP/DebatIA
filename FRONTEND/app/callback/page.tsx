@@ -1,12 +1,12 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useState, Suspense } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Loader2, CheckCircle, XCircle } from "lucide-react"
 
-export default function CallbackPage() {
+function CallbackContent() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const [status, setStatus] = useState<'loading' | 'success' | 'error'>('loading')
@@ -120,5 +120,31 @@ export default function CallbackPage() {
         </CardContent>
       </Card>
     </div>
+  )
+}
+
+export default function CallbackPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-green-50 to-blue-50 dark:from-gray-900 dark:to-gray-800 p-4">
+        <Card className="w-full max-w-md bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm border-white/20 dark:border-gray-800">
+          <CardHeader className="text-center">
+            <CardTitle className="text-2xl font-bold text-gray-900 dark:text-white">
+              Cargando...
+            </CardTitle>
+            <CardDescription className="text-gray-600 dark:text-gray-400">
+              Procesando autenticación...
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="text-center">
+            <div className="flex justify-center">
+              <Loader2 className="h-8 w-8 animate-spin text-green-600" />
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    }>
+      <CallbackContent />
+    </Suspense>
   )
 }
