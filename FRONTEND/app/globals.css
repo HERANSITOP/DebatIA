@@ -147,4 +147,24 @@ html.unal .bg-background {
   body {
     @apply bg-background text-foreground;
   }
+  
+  /* Quitar scroll y hacer footer fijo */
+  html, body {
+    height: 100%;
+    overflow-x: hidden;
+  }
+  
+  #__next {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  main {
+    flex: 1;
+  }
+  
+  footer {
+    margin-top: auto;
+  }
 }

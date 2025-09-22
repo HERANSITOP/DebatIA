@@ -69,14 +69,14 @@ export function LoginForm() {
           <div className="text-center text-sm text-gray-500 dark:text-gray-400">
             Al continuar, aceptas nuestros{" "}
             <a
-              href="#"
+              href="https://policies.google.com/terms?hl=es#footnote-services"
               className="text-green-600 hover:text-green-700 dark:text-green-500 dark:hover:text-green-400 underline"
             >
               Términos de servicio
             </a>{" "}
             y{" "}
             <a
-              href="#"
+              href="https://policies.google.com/privacy?hl=es"
               className="text-green-600 hover:text-green-700 dark:text-green-500 dark:hover:text-green-400 underline"
             >
               Política de privacidad

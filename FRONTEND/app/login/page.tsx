@@ -37,9 +37,9 @@ export default function LoginPage() {
               <div className="  flex items-center justify-center" >
                 <div className="text-accent-foreground font-bold">
                   <img 
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQeuoYIDwzHH-uI2m6Zsc5q-WNzZ-p8h9-8XQ&s " 
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Escudo_de_la_Universidad_Nacional_de_Colombia_%282016%29.svg/1596px-Escudo_de_la_Universidad_Nacional_de_Colombia_%282016%29.svg.png" 
                     alt="Logo" 
-                    className="w-32 h-32 object-cover rounded-full my-3"
+                    className="w-35 h-45 object-cover my-3"
                   />
                 </div>
               </div>
@@ -55,10 +55,7 @@ export default function LoginPage() {
         </div>
       </div>
 
-      {/* Footer */}
-      <footer className="p-0 text-center text-sm text-gray-600 dark:text-gray-400">
-        © 2025 DebatIA. Todos los derechos reservados.
-      </footer>
+
     </div>
   )
 }
