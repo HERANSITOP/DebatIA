@@ -1,0 +1,15 @@
+meta {
+  name: getToken
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{host}}/callback
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+}
